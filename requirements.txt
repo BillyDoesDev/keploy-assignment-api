@@ -1,0 +1,8 @@
+beautifulsoup4
+flask
+flask-cors
+Flask-PyMongo
+flask-restx
+lxml
+python-dotenv
+requests
