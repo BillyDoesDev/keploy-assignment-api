@@ -1,8 +1,4 @@
-beautifulsoup4
-flask
-flask-cors
-Flask-PyMongo
-flask-restx
-lxml
+fastapi[standard]
+pymongo
 python-dotenv
 requests

@@ -1,1 +1,248 @@
 # keploy-assignment-api
+
+## The Warehouse
+**Version:** 0.0.1
+
+
+The Warehouse API helps you do... well, a bunch of random stuff!
+For starters, feel free to check out the endpoints we provide:
+
+### /students
+Allows you to perform basic CRUD operations on a database - you may **search/create/update/delete** student records.
+<hr>
+
+### /weather
+Get the weather for a particular region, courtesy of https://wttr.in
+<hr>
+
+### /apod
+Gets the Astronomy Picture of the Day, courtesy of [NASA](https://api.nasa.gov/).
+<hr>
+
+### /xkcd
+Get an XKCD comic.
+<hr>
+
+
+## Getting Started
+
+Make sure you have [Docker](https://www.docker.com/) installed on your system, since that's what we use to set up our databases.
+
+Clone the reposiroy, `cd` into it and simply start up the containers!
+```sh
+git clone https://github.com/BillyDoesDev/keploy-assignment-api.git
+cd keploy-assignment-api
+docker compose up --build -d
+```
+
+You may then view your server logs using:
+```sh
+docker logs -f fastapi
+```
+
+And that's it! 🚀 
+
+**You can access the API documentation over at http://localhost:8000/scalar.</br>**
+*Optionally, you could also check the docs using the default swagger UI on http://localhost:8000/docs.*
+
+In either of the endpoints, you will find elaborate API documentation, along with a playground to test them out. Regardless, this repository contains the basic overview to help you get started.
+
+
+## Endpoints
+
+### `GET /students/`
+**Summary:** List Students
+
+List all of the student data in the database. 
+The response is unpaginated and limited to `1000` results.
+
+**Responses:**
+- `200`: List all students
+
+**Sample cURL:**
+```bash
+curl http://localhost:8000/students/
+```
+
+---
+
+### `POST /students/`
+**Summary:** Create Student
+
+Insert a new student record.
+
+A unique `id` will be created and provided in the response.
+
+**Request Body:**
+- Content-Type: `application/json`
+
+**Responses:**
+- `201`: Add new student
+- `422`: Validation Error
+
+**Sample cURL:**
+```bash
+curl http://localhost:8000/students/ \
+  --request POST \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "course": "Experiments, Science, and Fashion in Nanophotonics",
+  "email": "jdoe@example.com",
+  "gpa": 4,
+  "name": "Jane Doe"
+}'
+```
+
+---
+
+### `GET /students/{id}`
+**Summary:** Show Student
+
+Get the record for a specific student, looked up by `id`.
+
+**Query/Path Parameters:**
+- `id` (path) (required): 
+
+**Responses:**
+- `200`: Get a single student
+- `422`: Validation Error
+
+**Sample cURL:**
+```bash
+curl http://localhost:8000/students/6856146fb9a87b2a5f2b12c4
+```
+
+---
+
+### `PUT /students/{id}`
+**Summary:** Update Student
+
+Update individual fields of an existing student record.
+
+Only the provided fields will be updated.
+Any missing or `null` fields will be ignored.
+
+**Query/Path Parameters:**
+- `id` (path) (required): 
+
+**Request Body:**
+- Content-Type: `application/json`
+
+**Responses:**
+- `200`: Update a student
+- `422`: Validation Error
+
+**Sample cURL:**
+```bash
+curl http://localhost:8000/students/6856146fb9a87b2a5f2b12c4 \
+  --request PUT \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "course": "Experiments, Science, and Fashion in Nanophotonics",
+  "email": "jdoe@horse.com",
+  "gpa": 3,
+  "name": "Jane Doe"
+}'
+```
+
+---
+
+### `DELETE /students/{id}`
+**Summary:** Delete Student
+
+Remove a single student record from the database.
+
+**Query/Path Parameters:**
+- `id` (path) (required): 
+
+**Responses:**
+- `200`: Delete a student
+- `422`: Validation Error
+
+**Sample cURL:**
+```bash
+curl http://localhost:8000/students/6856146fb9a87b2a5f2b12c4 \
+  --request DELETE
+```
+
+---
+
+### `GET /weather/{region}`
+**Summary:** Get Weather
+
+Get the weather for a particular region, courtesy of https://wttr.in
+
+The region could be of one of the following types:
+
+|Type                   |Description
+|-----------------------|----------------
+|paris                  |city name
+|Москва                 |Unicode name of any location in any language
+|muc                    |airport code (3 letters)
+|@stackoverflow.com     |domain name
+|94107                  |area codes
+|-78.46,106.79          |GPS coordinates
+
+**Query/Path Parameters:**
+- `region` (path) (required): 
+
+**Responses:**
+- `200`: Get the weather for a particular region
+- `422`: Validation Error
+
+**Sample cURL:**
+```bash
+curl http://localhost:8000/weather/london
+```
+
+---
+
+### `GET /apod`
+**Summary:** Get Apod
+
+Gets the Astronomy Picture of the Day, courtesy of [NASA](https://api.nasa.gov/). 
+
+- `date`: The date of the APOD image to retrieve `(YYYY-MM-DD)`.
+- `start_date`: The start date of a range `(YYYY-MM-DD)`.
+- `end_date`: The end date of a range `(YYYY-MM-DD)`.
+- `count`: If specified, returns a number of random APODs. **Cannot be used with `date` or a date range**.
+- `thumbs`: If True, returns the thumbnail for video-type APODs.
+- `api_key`: Your NASA API key. Defaults to `'DEMO_KEY'`.
+
+**Query/Path Parameters:**
+- `date` (query) : 
+- `start_date` (query) : 
+- `end_date` (query) : 
+- `count` (query) : 
+- `thumbs` (query) : 
+- `api_key` (query) : 
+
+**Responses:**
+- `200`: Get Astronomy Picture of the Day
+- `422`: Validation Error
+
+**Sample cURL:**
+```bash
+curl 'http://localhost:8000/apod?api_key=DEMO_KEY'
+```
+
+---
+
+### `GET /xkcd`
+**Summary:** Get Xkcd
+
+Get an XKCD comic.
+
+- `id`: The comic ID to fetch. If omitted, returns the latest comic.
+
+**Query/Path Parameters:**
+- `id` (query) : 
+
+**Responses:**
+- `200`: Get XKCD comic info by ID or latest
+- `422`: Validation Error
+
+**Sample cURL:**
+```bash
+curl http://localhost:8000/xkcd
+```
