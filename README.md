@@ -9,6 +9,8 @@ For starters, feel free to check out the endpoints we provide:
 
 ### /students
 Allows you to perform basic CRUD operations on a database - you may **search/create/update/delete** student records.
+
+This section connects the app to a [MonboDb](https://www.mongodb.com/) Database, using docker. Persistence in data is ensured through named volumes. Additionally, [DbDate](https://dbgate.org/) is used to monitor and interact with the database.
 <hr>
 
 ### /weather
@@ -64,6 +66,20 @@ The response is unpaginated and limited to `1000` results.
 curl http://localhost:8000/students/
 ```
 
+**Example 200 response**
+```json
+{
+  "students": [
+    {
+      "course": "Experiments, Science, and Fashion in Nanophotonics",
+      "email": "jdoe@example.com",
+      "gpa": 3,
+      "name": "Jane Doe"
+    }
+  ]
+}
+```
+
 ---
 
 ### `POST /students/`
@@ -93,6 +109,15 @@ curl http://localhost:8000/students/ \
 }'
 ```
 
+**Example 201 response**
+```json
+{
+  "course": "Experiments, Science, and Fashion in Nanophotonics",
+  "email": "jdoe@example.com",
+  "gpa": 3,
+  "name": "Jane Doe"
+}
+```
 ---
 
 ### `GET /students/{id}`
@@ -110,6 +135,16 @@ Get the record for a specific student, looked up by `id`.
 **Sample cURL:**
 ```bash
 curl http://localhost:8000/students/6856146fb9a87b2a5f2b12c4
+```
+
+**Example 200 response**
+```json
+{
+  "course": "Experiments, Science, and Fashion in Nanophotonics",
+  "email": "jdoe@example.com",
+  "gpa": 3,
+  "name": "Jane Doe"
+}
 ```
 
 ---
@@ -145,6 +180,16 @@ curl http://localhost:8000/students/6856146fb9a87b2a5f2b12c4 \
 }'
 ```
 
+**Example 200 response**
+```json
+{
+  "course": "Experiments, Science, and Fashion in Nanophotonics",
+  "email": "jdoe@example.com",
+  "gpa": 3,
+  "name": "Jane Doe"
+}
+```
+
 ---
 
 ### `DELETE /students/{id}`
@@ -163,6 +208,11 @@ Remove a single student record from the database.
 ```bash
 curl http://localhost:8000/students/6856146fb9a87b2a5f2b12c4 \
   --request DELETE
+```
+
+**Example 200 response**
+```json
+null
 ```
 
 ---
@@ -193,6 +243,19 @@ The region could be of one of the following types:
 **Sample cURL:**
 ```bash
 curl http://localhost:8000/weather/london
+```
+
+**Example 200 response**
+```json
+{
+  "description": "Light drizzle",
+  "feels_like_c": 18,
+  "humidity": 97,
+  "precip_mm": 0.4,
+  "temperature_c": 15,
+  "uv_index": 0,
+  "visibility_km": 2
+}
 ```
 
 ---
@@ -226,6 +289,23 @@ Gets the Astronomy Picture of the Day, courtesy of [NASA](https://api.nasa.gov/)
 curl 'http://localhost:8000/apod?api_key=DEMO_KEY'
 ```
 
+**Example 200 response**
+```json
+[
+  {
+    "copyright": "Ramesh",
+    "date": "2024-06-21",
+    "explanation": "Astronomy Picture of the Day explanation text...",
+    "hdurl": "https://apod.nasa.gov/apod/image/2406/example_hd.jpg",
+    "media_type": "image",
+    "service_version": "v1",
+    "thumbnail_url": "https://apod.nasa.gov/apod/image/2406/thumb.jpg",
+    "title": "A Stunning Galaxy",
+    "url": "https://apod.nasa.gov/apod/image/2406/example.jpg"
+  }
+]
+```
+
 ---
 
 ### `GET /xkcd`
@@ -245,4 +325,21 @@ Get an XKCD comic.
 **Sample cURL:**
 ```bash
 curl http://localhost:8000/xkcd
+```
+
+**Example 200 response**
+```json
+{
+  "alt": "If you don't have an extension cord I can get that too.  Because we're friends!  Right?",
+  "day": "24",
+  "img": "https://imgs.xkcd.com/comics/woodpecker.png",
+  "link": "",
+  "month": "7",
+  "news": "",
+  "num": 614,
+  "safe_title": "Woodpecker",
+  "title": "Woodpecker",
+  "transcript": "[[Transcript text here...]]",
+  "year": "2009"
+}
 ```
