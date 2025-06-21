@@ -7,9 +7,9 @@ from pymongo import AsyncMongoClient
 from pymongo import ReturnDocument
 
 try:
-    import db_models as models
+    import scripts.custom_models as models
 except ImportError:
-    from scripts import db_models as models
+    from scripts import custom_models as models
 
 from dotenv import load_dotenv
 load_dotenv()
