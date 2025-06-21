@@ -45,6 +45,11 @@ docker logs -f fastapi
 And that's it! 🚀 
 
 **You can access the API documentation over at http://localhost:8000/scalar.</br>**
+
+<img src="assets/image.png" />
+
+> Beautiful and robust API docs, powered by [Scalar](https://www.scalar.com)
+
 *Optionally, you could also check the docs using the default swagger UI on http://localhost:8000/docs.*
 
 In either of the endpoints, you will find elaborate API documentation, along with a playground to test them out. Regardless, this repository contains the basic overview to help you get started.
