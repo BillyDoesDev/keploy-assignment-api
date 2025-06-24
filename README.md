@@ -3,6 +3,8 @@
 ## The Warehouse
 **Version:** 0.0.1
 
+[![Run Tests](https://github.com/BillyDoesDev/keploy-assignment-api/actions/workflows/test.yaml/badge.svg)](https://github.com/BillyDoesDev/keploy-assignment-api/actions/workflows/test.yaml)
+
 
 The Warehouse API helps you do... well, a bunch of random stuff!
 For starters, feel free to check out the endpoints we provide:
@@ -360,6 +362,7 @@ All tests have been written under the `tests/` directory. It covers all basic te
 - [x] API coverage (endpoints, response validation)
 
 
+Tests are automatically run on every push, and on every pull request. 
 In order to test it out yourself, you could do so via the docker container you've spun up:
 ```sh
 docker exec fastapi sh -c "pip install -r requirements-dev.txt && sh run-tests.sh
