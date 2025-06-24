@@ -348,3 +348,13 @@ curl http://localhost:8000/xkcd
   "year": "2009"
 }
 ```
+
+
+--- 
+
+## Testing
+
+All tests have been written under the `tests/` directory. It covers all basic test cases, such as:
+- [x] Unit tests (mocking, logic)
+- [x] Integration (database logic)
+- [x] API coverage (endpoints, response validation)
