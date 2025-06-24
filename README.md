@@ -367,3 +367,24 @@ In order to test it out yourself, you could do so via the docker container you'v
 ```sh
 docker exec fastapi sh -c "pip install -r requirements-dev.txt && sh run-tests.sh
 ```
+
+#### Breakdown
+
+Tests are generated using:
+```sh
+pytest --cov=scripts --cov-report=term-missing --html=report.html --self-contained-html --cov-fail-under=70
+```
+
+The `--cov-fail-under=70` ensures that the test does not pass unless we have a 70% coverage minimum. As of writing, the current test metrics are as follows:
+```
+_______________ coverage: platform linux, python 3.13.5-final-0 ________________
+
+Name                       Stmts   Miss  Cover   Missing
+--------------------------------------------------------
+scripts/custom_models.py      55      0   100%
+scripts/manage_db.py          39     11    72%   11-12, 46-65
+--------------------------------------------------------
+TOTAL                         94     11    88%
+Required test coverage of 70% reached. Total coverage: 88.30%
+---------------- Generated html report: file:///app/report.html ----------------
+```
