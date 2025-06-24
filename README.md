@@ -358,3 +358,9 @@ All tests have been written under the `tests/` directory. It covers all basic te
 - [x] Unit tests (mocking, logic)
 - [x] Integration (database logic)
 - [x] API coverage (endpoints, response validation)
+
+
+In order to test it out yourself, you could do so via the docker container you've spun up:
+```sh
+docker exec fastapi sh -c "pip install -r requirements-dev.txt && sh run-tests.sh
+```

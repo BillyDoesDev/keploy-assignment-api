@@ -1,7 +1,9 @@
 env/
 __pycache__/
+*cache*
 .vscode/
 .env
 *.log
 *spam*
 .coverage
+report.html

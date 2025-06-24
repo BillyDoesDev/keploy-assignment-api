@@ -1,0 +1,9 @@
+fastapi[standard]
+httpx
+mongomock
+motor
+pytest
+pytest-asyncio
+pytest-cov
+pytest-html
+requests

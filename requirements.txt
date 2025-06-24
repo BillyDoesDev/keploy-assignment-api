@@ -2,9 +2,3 @@ fastapi[standard]
 pymongo
 python-dotenv
 requests
-
-pytest
-httpx
-pytest-asyncio
-mongomock
-motor
