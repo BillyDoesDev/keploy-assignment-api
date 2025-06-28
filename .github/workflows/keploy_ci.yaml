@@ -1,0 +1,24 @@
+name: Run Automated Keploy Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  keploy-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Install Keploy CLI
+        run: |
+          curl --silent -L https://keploy.io/ent/install.sh | bash
+      
+      - name: Run Keploy Test Suite
+        run: |
+          export KEPLOY_API_KEY=${{ secrets.KEPLOY_API_KEY }}
+          keploy test-suite --app=6eca4571-51a6-4542-8244-df048f2cd09d --base-path http://localhost:8000/ --cloud
