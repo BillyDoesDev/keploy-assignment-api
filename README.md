@@ -388,3 +388,14 @@ TOTAL                         94     11    88%
 Required test coverage of 70% reached. Total coverage: 88.30%
 ---------------- Generated html report: file:///app/report.html ----------------
 ```
+
+## Automated testing using [Keploy](https://keploy.io)
+
+Testing acn be automatically integrated into the CI/CD pipeline using `Kwploy` using their AI powered API testing suite.
+
+A sample workflow has been set up on this repository, which is triggered to run on every push and pull request to the `main` branch.
+
+Here's what some sample reports might look like:
+
+<img src="assets/screenshots/keploy-tests1.png" />
+<img src="assets/screenshots/keploy-tests2.png" />
