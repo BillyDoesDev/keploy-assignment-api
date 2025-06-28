@@ -21,4 +21,4 @@ jobs:
       - name: Run Keploy Test Suite
         run: |
           export KEPLOY_API_KEY=${{ secrets.KEPLOY_API_KEY }}
-          keploy test-suite --app=6eca4571-51a6-4542-8244-df048f2cd09d --base-path http://localhost:8000 --cloud
+          keploy test-suite --app=6eca4571-51a6-4542-8244-df048f2cd09d --base-path https://awaited-musical-jaguar.ngrok-free.app/ --cloud
